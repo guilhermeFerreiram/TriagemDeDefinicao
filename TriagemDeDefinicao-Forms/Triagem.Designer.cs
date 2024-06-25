@@ -1,6 +1,6 @@
 ﻿namespace TriagemDeDefinicao_Forms
 {
-    partial class Form1
+    partial class Triagem
     {
         /// <summary>
         ///  Required designer variable.
@@ -33,6 +33,9 @@
             VerificacaoColumn = new DataGridViewTextBoxColumn();
             TempoDeExecucaoColumn = new DataGridViewTextBoxColumn();
             ResultadoColumn = new DataGridViewComboBoxColumn();
+            PlacaInputTextBox = new TextBox();
+            PlacaTextBox = new TextBox();
+            IniciarButton = new Button();
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -40,7 +43,7 @@
             // 
             TabelaDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TabelaDataGridView.Columns.AddRange(new DataGridViewColumn[] { NomeColumn, VerificacaoColumn, TempoDeExecucaoColumn, ResultadoColumn });
-            TabelaDataGridView.Location = new Point(36, 71);
+            TabelaDataGridView.Location = new Point(30, 152);
             TabelaDataGridView.Name = "TabelaDataGridView";
             TabelaDataGridView.RowHeadersWidth = 62;
             TabelaDataGridView.Size = new Size(727, 225);
@@ -82,17 +85,46 @@
             ResultadoColumn.Name = "ResultadoColumn";
             ResultadoColumn.Width = 150;
             // 
-            // Form1
+            // PlacaInputTextBox
+            // 
+            PlacaInputTextBox.Location = new Point(239, 48);
+            PlacaInputTextBox.Name = "PlacaInputTextBox";
+            PlacaInputTextBox.Size = new Size(150, 31);
+            PlacaInputTextBox.TabIndex = 1;
+            // 
+            // PlacaTextBox
+            // 
+            PlacaTextBox.Location = new Point(83, 48);
+            PlacaTextBox.Name = "PlacaTextBox";
+            PlacaTextBox.ReadOnly = true;
+            PlacaTextBox.Size = new Size(150, 31);
+            PlacaTextBox.TabIndex = 2;
+            PlacaTextBox.Text = "Placa:";
+            // 
+            // IniciarButton
+            // 
+            IniciarButton.Location = new Point(627, 45);
+            IniciarButton.Name = "IniciarButton";
+            IniciarButton.Size = new Size(112, 34);
+            IniciarButton.TabIndex = 3;
+            IniciarButton.Text = "Iniciar";
+            IniciarButton.UseVisualStyleBackColor = true;
+            IniciarButton.Click += IniciarButton_Click;
+            // 
+            // Triagem
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(ResultadoButton);
+            Controls.Add(IniciarButton);
+            Controls.Add(PlacaTextBox);
+            Controls.Add(PlacaInputTextBox);
             Controls.Add(TabelaDataGridView);
-            Name = "Form1";
+            Name = "Triagem";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -103,5 +135,8 @@
         private DataGridViewTextBoxColumn TempoDeExecucaoColumn;
         private DataGridViewComboBoxColumn ResultadoColumn;
         private Button ResultadoButton;
+        private TextBox PlacaInputTextBox;
+        private TextBox PlacaTextBox;
+        private Button IniciarButton;
     }
 }

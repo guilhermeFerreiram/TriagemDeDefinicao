@@ -4,6 +4,7 @@ namespace TriagemDeDefinicao_Forms.Entities
 {
     internal class Moto
     {
+        public string Placa { get; private set; }
         public List<Item> Itens { get; private set; }
         public TimeSpan TempoDeExecucao { get; private set; }
         public Cor Situacao { get; private set; }
@@ -13,6 +14,11 @@ namespace TriagemDeDefinicao_Forms.Entities
             Itens = new List<Item>();
             TempoDeExecucao = TimeSpan.Zero;
             Situacao = Cor.Verde;
+        }
+
+        public Moto(string placa) : this()
+        {
+            Placa = placa;
         }
 
         public void Triagem(List<Item> itens)
