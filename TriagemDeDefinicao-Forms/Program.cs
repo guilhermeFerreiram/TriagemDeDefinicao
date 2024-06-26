@@ -1,3 +1,5 @@
+using TriagemDeDefinicao_Forms.Entities;
+
 namespace TriagemDeDefinicao_Forms
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace TriagemDeDefinicao_Forms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Triagem());
+            Application.Run(new FrmTriagem());
         }
     }
 }

@@ -16,11 +16,6 @@ namespace TriagemDeDefinicao_Forms.Entities
             Situacao = Cor.Verde;
         }
 
-        public Moto(string placa) : this()
-        {
-            Placa = placa;
-        }
-
         public void Triagem(List<Item> itens)
         {
             for (int i = 0; i < itens.Count; i++)
@@ -46,11 +41,11 @@ namespace TriagemDeDefinicao_Forms.Entities
 
         public void DefinirSituacao()
         {
-            if (TempoDeExecucao.TotalMinutes <= 5)
+            if (TempoDeExecucao.TotalMinutes < 25)
             {
                 Situacao = Cor.Verde;
             }
-            else if (TempoDeExecucao.TotalMinutes > 5 && TempoDeExecucao.TotalMinutes <= 10)
+            else if (TempoDeExecucao.TotalMinutes >= 25 && TempoDeExecucao.TotalMinutes < 60)
             {
                 Situacao = Cor.Amarelo;
             }
@@ -58,6 +53,24 @@ namespace TriagemDeDefinicao_Forms.Entities
             {
                 Situacao = Cor.Vermelho;
             }
+        }
+
+        public void DefinirPlaca(string placa)
+        {
+            Placa = placa;
+        }
+
+        public void AdicionarItem(Item item)
+        {
+            Itens.Add(item);
+        }
+
+        public void LimparDados()
+        {
+            Placa = "";
+            Itens.Clear();
+            TempoDeExecucao = TimeSpan.Zero;
+            Situacao = Cor.Verde;
         }
     }
 }
