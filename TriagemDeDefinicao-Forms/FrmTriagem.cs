@@ -66,10 +66,8 @@ namespace TriagemDeDefinicao_Forms
             return false;
         }
 
-        private void ResultadoButton_Click(object sender, EventArgs e)
+        private bool PreenchimentoCorreto()
         {
-            if (PlacaInputEstaVazio()) return;
-
             foreach (DataGridViewRow row in TabelaDataGridView.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -77,9 +75,24 @@ namespace TriagemDeDefinicao_Forms
                 if (row.Cells["ResultadoColumn"].Value == null || row.Cells["ResultadoColumn"].Value.ToString().Trim() == "")
                 {
                     MessageBox.Show("Escreva OK ou NG para TODOS os itens na tabela!");
-                    return;
+                    return false;
+                }
+
+                if (row.Cells["ResultadoColumn"].Value.ToString().Trim().ToUpper() != "OK" && row.Cells["ResultadoColumn"].Value.ToString().Trim().ToUpper() != "NG")
+                {
+                    MessageBox.Show("Somente OK e NG são aceitos na coluna Resultado. Certifique-se de que não escreveu incorretamente!");
+                    return false;
                 }
             }
+
+            return true;
+        }
+
+        private void ResultadoButton_Click(object sender, EventArgs e)
+        {
+            if (PlacaInputEstaVazio()) return;
+
+            if (!PreenchimentoCorreto()) return;
 
             NovaMoto.LimparDados();
             NovaMoto.DefinirPlaca(PlacaInputTextBox.Text);
