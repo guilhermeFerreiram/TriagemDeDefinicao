@@ -21,11 +21,7 @@ namespace TriagemDeDefinicao_Forms.Entities
 
         public void DefinirSituacao()
         {
-            if (TempoDeExecucao.TotalMinutes <= 5)
-            {
-                Situacao = Cor.Verde;
-            }
-            else if (TempoDeExecucao.TotalMinutes > 5 && TempoDeExecucao.TotalMinutes <= 10)
+            if (TempoDeExecucao.TotalMinutes < 60)
             {
                 Situacao = Cor.Amarelo;
             }

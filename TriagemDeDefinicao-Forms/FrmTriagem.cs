@@ -124,7 +124,7 @@ namespace TriagemDeDefinicao_Forms
                     break;
             }
 
-            TempoExecucaoTextBox.Text = $"{NovaMoto.TempoDeExecucao.Hours.ToString()}H {NovaMoto.TempoDeExecucao.Minutes.ToString()}m";
+            TempoExecucaoTextBox.Text = $"{NovaMoto.TempoDeExecucao.Hours.ToString()}h{NovaMoto.TempoDeExecucao.Minutes.ToString()}m";
 
             PlacaTriadaTextBox.Visible = true;
             ComplexidadeTextBox.Visible = true;
@@ -155,6 +155,47 @@ namespace TriagemDeDefinicao_Forms
         private void OcultarBotoesPosResultado()
         {
             NovaTriagemButton.Visible = false;
+        }
+
+        private void TabelaDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            TabelaDataGridView.InvalidateCell(e.ColumnIndex, e.RowIndex);
+        }
+
+        private void TabelaDataGridView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (TabelaDataGridView.IsCurrentCellDirty)
+            {
+                TabelaDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void TabelaDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (TabelaDataGridView.Columns[e.ColumnIndex].Name == "ResultadoColumn")
+            {
+                if (e.Value != null && e.Value.ToString().Trim().ToUpper() == "NG")
+                {
+                    Item item = new Item();
+                    item = ListaDeItens()[e.RowIndex];
+                    if (item.Situacao == Enums.Cor.Amarelo)
+                    {
+                        e.CellStyle.BackColor = Color.Yellow;
+                    }
+                    else if (item.Situacao == Enums.Cor.Vermelho)
+                    {
+                        e.CellStyle.BackColor = Color.Red;
+                    }
+                }
+                else if (e.Value != null && e.Value.ToString().Trim().ToUpper() == "OK")
+                {
+                    e.CellStyle.BackColor = Color.Green;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.White;
+                }
+            }
         }
     }
 }
