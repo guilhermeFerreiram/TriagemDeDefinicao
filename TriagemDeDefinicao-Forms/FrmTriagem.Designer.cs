@@ -48,12 +48,13 @@ namespace TriagemDeDefinicao_Forms
             // 
             // TabelaDataGridView
             // 
+            TabelaDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             TabelaDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TabelaDataGridView.Columns.AddRange(new DataGridViewColumn[] { NomeColumn, VerificacaoColumn, ResultadoColumn });
-            TabelaDataGridView.Location = new Point(71, 85);
+            TabelaDataGridView.Location = new Point(84, 130);
             TabelaDataGridView.Name = "TabelaDataGridView";
             TabelaDataGridView.RowHeadersWidth = 62;
-            TabelaDataGridView.Size = new Size(668, 220);
+            TabelaDataGridView.Size = new Size(1700, 362);
             TabelaDataGridView.TabIndex = 0;
             // 
             // NomeColumn
@@ -63,7 +64,7 @@ namespace TriagemDeDefinicao_Forms
             NomeColumn.MinimumWidth = 8;
             NomeColumn.Name = "NomeColumn";
             NomeColumn.ReadOnly = true;
-            NomeColumn.Width = 150;
+            NomeColumn.Width = 97;
             // 
             // VerificacaoColumn
             // 
@@ -72,27 +73,27 @@ namespace TriagemDeDefinicao_Forms
             VerificacaoColumn.MinimumWidth = 8;
             VerificacaoColumn.Name = "VerificacaoColumn";
             VerificacaoColumn.ReadOnly = true;
-            VerificacaoColumn.Width = 150;
+            VerificacaoColumn.Width = 132;
             // 
             // ResultadoColumn
             // 
             ResultadoColumn.Frozen = true;
             ResultadoColumn.HeaderText = "Resultado";
             ResultadoColumn.Items.AddRange(new object[] { "NG", "OK" });
-            ResultadoColumn.MinimumWidth = 8;
+            ResultadoColumn.MinimumWidth = 150;
             ResultadoColumn.Name = "ResultadoColumn";
-            ResultadoColumn.Width = 150;
+            ResultadoColumn.Width = 96;
             // 
             // PlacaInputTextBox
             // 
-            PlacaInputTextBox.Location = new Point(239, 48);
+            PlacaInputTextBox.Location = new Point(249, 80);
             PlacaInputTextBox.Name = "PlacaInputTextBox";
             PlacaInputTextBox.Size = new Size(150, 31);
             PlacaInputTextBox.TabIndex = 1;
             // 
             // PlacaTextBox
             // 
-            PlacaTextBox.Location = new Point(83, 48);
+            PlacaTextBox.Location = new Point(84, 80);
             PlacaTextBox.Name = "PlacaTextBox";
             PlacaTextBox.ReadOnly = true;
             PlacaTextBox.Size = new Size(150, 31);
@@ -101,7 +102,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             // IniciarButton
             // 
-            IniciarButton.Location = new Point(627, 45);
+            IniciarButton.Location = new Point(1472, 77);
             IniciarButton.Name = "IniciarButton";
             IniciarButton.Size = new Size(112, 34);
             IniciarButton.TabIndex = 3;
@@ -111,7 +112,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             // ResultadoButton
             // 
-            ResultadoButton.Location = new Point(84, 316);
+            ResultadoButton.Location = new Point(84, 509);
             ResultadoButton.Name = "ResultadoButton";
             ResultadoButton.Size = new Size(112, 34);
             ResultadoButton.TabIndex = 4;
@@ -122,7 +123,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             // PlacaTriadaTextBox
             // 
-            PlacaTriadaTextBox.Location = new Point(71, 376);
+            PlacaTriadaTextBox.Location = new Point(1071, 512);
             PlacaTriadaTextBox.Name = "PlacaTriadaTextBox";
             PlacaTriadaTextBox.ReadOnly = true;
             PlacaTriadaTextBox.Size = new Size(150, 31);
@@ -131,7 +132,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             // ComplexidadeTextBox
             // 
-            ComplexidadeTextBox.Location = new Point(256, 376);
+            ComplexidadeTextBox.Location = new Point(1256, 512);
             ComplexidadeTextBox.Name = "ComplexidadeTextBox";
             ComplexidadeTextBox.ReadOnly = true;
             ComplexidadeTextBox.Size = new Size(150, 31);
@@ -140,7 +141,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             // TempoExecucaoTextBox
             // 
-            TempoExecucaoTextBox.Location = new Point(434, 376);
+            TempoExecucaoTextBox.Location = new Point(1434, 512);
             TempoExecucaoTextBox.Name = "TempoExecucaoTextBox";
             TempoExecucaoTextBox.ReadOnly = true;
             TempoExecucaoTextBox.Size = new Size(150, 31);
@@ -149,7 +150,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             // NovaTriagemButton
             // 
-            NovaTriagemButton.Location = new Point(215, 316);
+            NovaTriagemButton.Location = new Point(222, 509);
             NovaTriagemButton.Name = "NovaTriagemButton";
             NovaTriagemButton.Size = new Size(139, 34);
             NovaTriagemButton.TabIndex = 9;
@@ -162,7 +163,7 @@ namespace TriagemDeDefinicao_Forms
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1702, 644);
             Controls.Add(NovaTriagemButton);
             Controls.Add(TempoExecucaoTextBox);
             Controls.Add(ComplexidadeTextBox);
@@ -174,6 +175,7 @@ namespace TriagemDeDefinicao_Forms
             Controls.Add(TabelaDataGridView);
             Name = "FrmTriagem";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
