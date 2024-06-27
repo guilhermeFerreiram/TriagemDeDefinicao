@@ -1,4 +1,8 @@
-using System.Windows.Forms;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using System.IO;
 using TriagemDeDefinicao_Forms.Entities;
 
 namespace TriagemDeDefinicao_Forms
@@ -15,8 +19,8 @@ namespace TriagemDeDefinicao_Forms
             List<Item> itens = new List<Item>();
             itens.Add(new Item("Óleo de Motor", "Verifique o nível rosqueando na Sport e encostando na Pop. Primeira troca com 1.000km e a cada 5.000km. Complete o nível se necessário.", new TimeSpan(0, 3, 0)));
             itens.Add(new Item("Compressão do Motor", "Verifique acionando o pedal de partida.", new TimeSpan(0, 25, 0)));
-            itens.Add(new Item("Rotação de Marcha lenta", "Sport: 1.500 ± 150 rpm   Pop: 1400 ± 100 rpm.", new TimeSpan(0, 3, 0)));
-            itens.Add(new Item("Sistema de Escapamento", "Com a motocicleta ligada, verifique vazamento de gás.", new TimeSpan(0, 3, 0)));
+            //itens.Add(new Item("Rotação de Marcha lenta", "Sport: 1.500 ± 150 rpm   Pop: 1400 ± 100 rpm.", new TimeSpan(0, 3, 0)));
+            //itens.Add(new Item("Sistema de Escapamento", "Com a motocicleta ligada, verifique vazamento de gás.", new TimeSpan(0, 3, 0)));
             //itens.Add(new Item("Elemento de Filtro de Ar", "Verifique o quanto está sujo e a vida útil.", new TimeSpan(0, 3, 0)));
             //itens.Add(new Item("Embreagem", "Verifique: folga livre do manete ( Sport: 8 à 13mm Pop: 10 à 20mm).", new TimeSpan(0, 8, 0)));
             //itens.Add(new Item("Freio dianteiro", "Verifique: folga livre do manete ( Sport: 15 à 20mm Pop: 10 à 20mm).", new TimeSpan(0, 6, 0)));
@@ -147,6 +151,7 @@ namespace TriagemDeDefinicao_Forms
         private void ExibirBotoesPosResultado()
         {
             NovaTriagemButton.Visible = true;
+            SalvarButton.Visible = true;
         }
 
         private void NovaTriagemButton_Click(object sender, EventArgs e)
@@ -168,6 +173,7 @@ namespace TriagemDeDefinicao_Forms
         private void OcultarBotoesPosResultado()
         {
             NovaTriagemButton.Visible = false;
+            SalvarButton.Visible = false;
         }
 
         private void TabelaDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -207,6 +213,35 @@ namespace TriagemDeDefinicao_Forms
                 else
                 {
                     e.CellStyle.BackColor = Color.White;
+                }
+            }
+        }
+
+        private void SalvarButton_Click(object sender, EventArgs e)
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string checklistFolderPath = System.IO.Path.Combine(desktopPath, "CHECKLISTS");
+
+            Directory.CreateDirectory(checklistFolderPath);
+
+            string filePath = System.IO.Path.Combine(checklistFolderPath, $"CheckList_{NovaMoto.Placa}_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf");
+
+            CreatePdf(filePath);
+
+            MessageBox.Show($"Resultado salvo com sucesso em {checklistFolderPath}");
+        }
+
+        private void CreatePdf(string filePath)
+        {
+            using (PdfWriter writer = new PdfWriter(filePath))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    Document document = new Document(pdf);
+
+                    document.Add(new Paragraph("Olá, mundo! Este é um PDF gerado com iText 7 em um aplicativo Windows Forms."));
+
+                    document.Close();
                 }
             }
         }

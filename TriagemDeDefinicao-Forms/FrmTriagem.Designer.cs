@@ -43,6 +43,7 @@ namespace TriagemDeDefinicao_Forms
             ComplexidadeTextBox = new TextBox();
             TempoExecucaoTextBox = new TextBox();
             NovaTriagemButton = new Button();
+            SalvarButton = new Button();
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -162,11 +163,23 @@ namespace TriagemDeDefinicao_Forms
             NovaTriagemButton.Visible = false;
             NovaTriagemButton.Click += NovaTriagemButton_Click;
             // 
+            // SalvarButton
+            // 
+            SalvarButton.Location = new Point(393, 753);
+            SalvarButton.Name = "SalvarButton";
+            SalvarButton.Size = new Size(112, 34);
+            SalvarButton.TabIndex = 10;
+            SalvarButton.Text = "Salvar";
+            SalvarButton.UseVisualStyleBackColor = true;
+            SalvarButton.Visible = false;
+            SalvarButton.Click += SalvarButton_Click;
+            // 
             // FrmTriagem
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1702, 1029);
+            Controls.Add(SalvarButton);
             Controls.Add(NovaTriagemButton);
             Controls.Add(TempoExecucaoTextBox);
             Controls.Add(ComplexidadeTextBox);
@@ -199,5 +212,6 @@ namespace TriagemDeDefinicao_Forms
         private TextBox TempoExecucaoTextBox;
         private Button NovaTriagemButton;
         private DataGridViewTextBoxColumn ResultadoColumn;
+        private Button SalvarButton;
     }
 }
