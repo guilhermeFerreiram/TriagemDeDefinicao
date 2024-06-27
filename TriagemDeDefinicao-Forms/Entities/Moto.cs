@@ -57,7 +57,7 @@ namespace TriagemDeDefinicao_Forms.Entities
 
         public void DefinirPlaca(string placa)
         {
-            Placa = placa;
+            Placa = placa.ToUpper().Trim();
         }
 
         public void AdicionarItem(Item item)
