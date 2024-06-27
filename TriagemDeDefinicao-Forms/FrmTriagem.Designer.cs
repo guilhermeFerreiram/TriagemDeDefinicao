@@ -33,7 +33,6 @@ namespace TriagemDeDefinicao_Forms
             TabelaDataGridView = new DataGridView();
             NomeColumn = new DataGridViewTextBoxColumn();
             VerificacaoColumn = new DataGridViewTextBoxColumn();
-            TempoDeExecucaoColumn = new DataGridViewTextBoxColumn();
             ResultadoColumn = new DataGridViewComboBoxColumn();
             PlacaInputTextBox = new TextBox();
             PlacaTextBox = new TextBox();
@@ -50,7 +49,7 @@ namespace TriagemDeDefinicao_Forms
             // TabelaDataGridView
             // 
             TabelaDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            TabelaDataGridView.Columns.AddRange(new DataGridViewColumn[] { NomeColumn, VerificacaoColumn, TempoDeExecucaoColumn, ResultadoColumn });
+            TabelaDataGridView.Columns.AddRange(new DataGridViewColumn[] { NomeColumn, VerificacaoColumn, ResultadoColumn });
             TabelaDataGridView.Location = new Point(71, 85);
             TabelaDataGridView.Name = "TabelaDataGridView";
             TabelaDataGridView.RowHeadersWidth = 62;
@@ -74,15 +73,6 @@ namespace TriagemDeDefinicao_Forms
             VerificacaoColumn.Name = "VerificacaoColumn";
             VerificacaoColumn.ReadOnly = true;
             VerificacaoColumn.Width = 150;
-            // 
-            // TempoDeExecucaoColumn
-            // 
-            TempoDeExecucaoColumn.Frozen = true;
-            TempoDeExecucaoColumn.HeaderText = "Tempo de Execução";
-            TempoDeExecucaoColumn.MinimumWidth = 8;
-            TempoDeExecucaoColumn.Name = "TempoDeExecucaoColumn";
-            TempoDeExecucaoColumn.ReadOnly = true;
-            TempoDeExecucaoColumn.Width = 150;
             // 
             // ResultadoColumn
             // 
@@ -194,7 +184,6 @@ namespace TriagemDeDefinicao_Forms
         private DataGridView TabelaDataGridView;
         private DataGridViewTextBoxColumn NomeColumn;
         private DataGridViewTextBoxColumn VerificacaoColumn;
-        private DataGridViewTextBoxColumn TempoDeExecucaoColumn;
         private DataGridViewComboBoxColumn ResultadoColumn;
         private TextBox PlacaInputTextBox;
         private TextBox PlacaTextBox;
