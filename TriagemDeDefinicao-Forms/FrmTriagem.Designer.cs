@@ -33,7 +33,7 @@ namespace TriagemDeDefinicao_Forms
             TabelaDataGridView = new DataGridView();
             NomeColumn = new DataGridViewTextBoxColumn();
             VerificacaoColumn = new DataGridViewTextBoxColumn();
-            ResultadoColumn = new DataGridViewComboBoxColumn();
+            ResultadoColumn = new DataGridViewTextBoxColumn();
             PlacaInputTextBox = new TextBox();
             PlacaTextBox = new TextBox();
             IniciarButton = new Button();
@@ -48,6 +48,8 @@ namespace TriagemDeDefinicao_Forms
             // 
             // TabelaDataGridView
             // 
+            TabelaDataGridView.AllowUserToAddRows = false;
+            TabelaDataGridView.AllowUserToDeleteRows = false;
             TabelaDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             TabelaDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TabelaDataGridView.Columns.AddRange(new DataGridViewColumn[] { NomeColumn, VerificacaoColumn, ResultadoColumn });
@@ -77,12 +79,10 @@ namespace TriagemDeDefinicao_Forms
             // 
             // ResultadoColumn
             // 
-            ResultadoColumn.Frozen = true;
             ResultadoColumn.HeaderText = "Resultado";
-            ResultadoColumn.Items.AddRange(new object[] { "NG", "OK" });
-            ResultadoColumn.MinimumWidth = 150;
+            ResultadoColumn.MinimumWidth = 8;
             ResultadoColumn.Name = "ResultadoColumn";
-            ResultadoColumn.Width = 96;
+            ResultadoColumn.Width = 126;
             // 
             // PlacaInputTextBox
             // 
@@ -186,7 +186,6 @@ namespace TriagemDeDefinicao_Forms
         private DataGridView TabelaDataGridView;
         private DataGridViewTextBoxColumn NomeColumn;
         private DataGridViewTextBoxColumn VerificacaoColumn;
-        private DataGridViewComboBoxColumn ResultadoColumn;
         private TextBox PlacaInputTextBox;
         private TextBox PlacaTextBox;
         private Button IniciarButton;
@@ -196,5 +195,6 @@ namespace TriagemDeDefinicao_Forms
         private TextBox ComplexidadeTextBox;
         private TextBox TempoExecucaoTextBox;
         private Button NovaTriagemButton;
+        private DataGridViewTextBoxColumn ResultadoColumn;
     }
 }

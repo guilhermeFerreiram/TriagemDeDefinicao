@@ -58,7 +58,7 @@ namespace TriagemDeDefinicao_Forms
 
         private bool PlacaInputEstaVazio()
         {
-            if (PlacaInputTextBox.Text == null || PlacaInputTextBox.Text == "")
+            if (PlacaInputTextBox.Text == null || PlacaInputTextBox.Text.Trim() == "")
             {
                 MessageBox.Show("O campo placa não pode estar vazio!");
                 return true;
@@ -74,9 +74,9 @@ namespace TriagemDeDefinicao_Forms
             {
                 if (row.IsNewRow) continue;
 
-                if (row.Cells["ResultadoColumn"].Value == null)
+                if (row.Cells["ResultadoColumn"].Value == null || row.Cells["ResultadoColumn"].Value.ToString().Trim() == "")
                 {
-                    MessageBox.Show("Selecione OK ou NG para TODOS os itens na tabela!");
+                    MessageBox.Show("Escreva OK ou NG para TODOS os itens na tabela!");
                     return;
                 }
             }
@@ -98,7 +98,7 @@ namespace TriagemDeDefinicao_Forms
             {
                 if (row.IsNewRow) continue;
 
-                if (row.Cells["ResultadoColumn"].Value.ToString() == "NG")
+                if (row.Cells["ResultadoColumn"].Value.ToString().Trim().ToUpper() == "NG")
                 {
                     Item item = new Item();
                     item = ListaDeItens()[row.Index];
