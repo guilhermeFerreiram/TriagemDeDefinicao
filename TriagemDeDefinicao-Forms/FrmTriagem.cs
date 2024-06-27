@@ -1,7 +1,10 @@
+using iText.Kernel.Colors;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
+using iText.Layout.Borders;
 using iText.Layout.Element;
+using iText.Layout.Properties;
 using System.IO;
 using TriagemDeDefinicao_Forms.Entities;
 
@@ -131,13 +134,13 @@ namespace TriagemDeDefinicao_Forms
             switch (NovaMoto.Situacao)
             {
                 case Enums.Cor.Verde:
-                    ComplexidadeTextBox.BackColor = Color.Green;
+                    ComplexidadeTextBox.BackColor = System.Drawing.Color.Green;
                     break;
                 case Enums.Cor.Amarelo:
-                    ComplexidadeTextBox.BackColor = Color.Yellow;
+                    ComplexidadeTextBox.BackColor = System.Drawing.Color.Yellow;
                     break;
                 case Enums.Cor.Vermelho:
-                    ComplexidadeTextBox.BackColor = Color.Red;
+                    ComplexidadeTextBox.BackColor = System.Drawing.Color.Red;
                     break;
             }
 
@@ -199,20 +202,20 @@ namespace TriagemDeDefinicao_Forms
                     item = ListaDeItens()[e.RowIndex];
                     if (item.Situacao == Enums.Cor.Amarelo)
                     {
-                        e.CellStyle.BackColor = Color.Yellow;
+                        e.CellStyle.BackColor = System.Drawing.Color.Yellow;
                     }
                     else if (item.Situacao == Enums.Cor.Vermelho)
                     {
-                        e.CellStyle.BackColor = Color.Red;
+                        e.CellStyle.BackColor = System.Drawing.Color.Red;
                     }
                 }
                 else if (e.Value != null && e.Value.ToString().Trim().ToUpper() == "OK")
                 {
-                    e.CellStyle.BackColor = Color.Green;
+                    e.CellStyle.BackColor = System.Drawing.Color.Green;
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.White;
+                    e.CellStyle.BackColor = System.Drawing.Color.White;
                 }
             }
         }
@@ -243,23 +246,60 @@ namespace TriagemDeDefinicao_Forms
 
                     // Cria uma tabela com 2 colunas
                     Table table = new Table(2);
+                    table.SetWidth(UnitValue.CreatePercentValue(100));
 
-                    // Adiciona cabeçalhos à tabela
-                    table.AddHeaderCell("Item");
-                    table.AddHeaderCell("Resultado");
+                    // Define um estilo para o cabeçalho da tabela
+                    Style headerStyle = new Style()
+                        .SetBackgroundColor(ColorConstants.LIGHT_GRAY)
+                        .SetFontColor(ColorConstants.BLACK)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetBold();
+
+                    // Define um estilo para o conteúdo da tabela
+                    Style cellStyle = new Style()
+                        .SetTextAlignment(TextAlignment.CENTER);
+
+                    // Adiciona cabeçalhos à tabela com o estilo
+                    Cell headerCell;
+
+                    headerCell = new Cell().Add(new Paragraph("Item"));
+                    headerCell.AddStyle(headerStyle);
+                    table.AddHeaderCell(headerCell);
+
+                    headerCell = new Cell().Add(new Paragraph("Resultado"));
+                    headerCell.AddStyle(headerStyle);
+                    table.AddHeaderCell(headerCell);
 
                     foreach (DataGridViewRow row in TabelaDataGridView.Rows)
                     {
-                        table.AddCell(row.Cells["NomeColumn"].Value.ToString());
-                        table.AddCell(row.Cells["ResultadoColumn"].Value.ToString());
+                        string nomeItem = row.Cells["NomeColumn"].Value.ToString().Trim();
+                        string resultado =  row.Cells["ResultadoColumn"].Value.ToString().ToUpper().Trim();
+
+                        AddTableRow(table, nomeItem, resultado, cellStyle);
                     }
 
-                    // Adiciona a tabela ao documento
                     document.Add(table);
 
                     document.Close();
                 }
             }
+        }
+
+        private void AddTableRow(Table table, string nomeItem, string resultado, Style cellStyle)
+        {
+            table.AddCell(new Cell().Add(new Paragraph(nomeItem)).AddStyle(cellStyle));
+
+            Cell resultCell = new Cell().Add(new Paragraph(resultado)).AddStyle(cellStyle);
+            if (resultado == "OK")
+            {
+                resultCell.SetBackgroundColor(ColorConstants.GREEN);
+            }
+            else if (resultado == "NG")
+            {
+                resultCell.SetBackgroundColor(ColorConstants.YELLOW);
+            }
+
+            table.AddCell(resultCell);
         }
     }
 }
