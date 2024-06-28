@@ -6,46 +6,30 @@ namespace TriagemDeDefinicao_Forms.Entities
     {
         public string Placa { get; private set; }
         public List<Item> Itens { get; private set; }
-        public TimeSpan TempoDeExecucao { get; private set; }
+        public TimeSpan TempoEstimado { get; private set; }
         public Cor Situacao { get; private set; }
 
         public Moto()
         {
             Itens = new List<Item>();
-            TempoDeExecucao = TimeSpan.Zero;
+            TempoEstimado = TimeSpan.Zero;
             Situacao = Cor.Verde;
         }
-
-        public void Triagem(List<Item> itens)
-        {
-            for (int i = 0; i < itens.Count; i++)
-            {
-                Console.WriteLine($"#{i + 1} - {itens[i].Nome}, {itens[i].Verificacao}, {itens[i].TempoDeExecucao}");
-                Console.Write("NG ou OK: ");
-                string s = Console.ReadLine();
-
-                if (s.ToUpper().Trim() == "OK")
-                {
-                    Itens.Add(itens[i]);
-                }
-            }
-        }
-
         public void CalcularTempoDeExecucao()
         {
             foreach (Item item in Itens)
             {
-                TempoDeExecucao += item.TempoDeExecucao;
+                TempoEstimado += item.TempoDeExecucao;
             }
         }
 
         public void DefinirSituacao()
         {
-            if (TempoDeExecucao.TotalMinutes < 25)
+            if (TempoEstimado.TotalMinutes < 25)
             {
                 Situacao = Cor.Verde;
             }
-            else if (TempoDeExecucao.TotalMinutes >= 25 && TempoDeExecucao.TotalMinutes < 60)
+            else if (TempoEstimado.TotalMinutes >= 25 && TempoEstimado.TotalMinutes < 60)
             {
                 Situacao = Cor.Amarelo;
             }
@@ -69,8 +53,13 @@ namespace TriagemDeDefinicao_Forms.Entities
         {
             Placa = "";
             Itens.Clear();
-            TempoDeExecucao = TimeSpan.Zero;
+            TempoEstimado = TimeSpan.Zero;
             Situacao = Cor.Verde;
+        }
+
+        public string ExibirTempoEstimado()
+        {
+            return $"{TempoEstimado.Hours.ToString()}h{TempoEstimado.Minutes.ToString()}m";
         }
     }
 }
