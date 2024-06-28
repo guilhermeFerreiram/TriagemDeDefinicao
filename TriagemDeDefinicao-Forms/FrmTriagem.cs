@@ -97,6 +97,11 @@ namespace TriagemDeDefinicao_Forms
 
         private void ResultadoButton_Click(object sender, EventArgs e)
         {
+            Resultado();
+        }
+
+        private void Resultado()
+        {
             if (PlacaInputEstaVazio()) return;
 
             if (!PreenchimentoCorreto()) return;
@@ -111,6 +116,7 @@ namespace TriagemDeDefinicao_Forms
             ExibirResultado();
             ExibirBotoesPosResultado();
         }
+
 
         private void AdicionarItens()
         {
@@ -159,13 +165,15 @@ namespace TriagemDeDefinicao_Forms
 
         private void NovaTriagemButton_Click(object sender, EventArgs e)
         {
+            NovaTriagem();
+        }
+
+        private void NovaTriagem()
+        {
             NovaMoto.LimparDados();
             TabelaDataGridView.Rows.Clear();
 
-            OcultarBotoesPosResultado();
-            PlacaTriadaTextBox.Visible = false;
-            ComplexidadeTextBox.Visible = false;
-            TempoExecucaoTextBox.Visible = false;
+            OcultarResultado();
             ResultadoButton.Visible = false;
 
             IniciarButton.Visible = true;
@@ -173,10 +181,13 @@ namespace TriagemDeDefinicao_Forms
             PlacaInputTextBox.ReadOnly = false;
         }
 
-        private void OcultarBotoesPosResultado()
+        private void OcultarResultado()
         {
             NovaTriagemButton.Visible = false;
             SalvarButton.Visible = false;
+            PlacaTriadaTextBox.Visible = false;
+            ComplexidadeTextBox.Visible = false;
+            TempoExecucaoTextBox.Visible = false;
         }
 
         private void TabelaDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -232,6 +243,8 @@ namespace TriagemDeDefinicao_Forms
             CreatePdf(filePath);
 
             MessageBox.Show($"Resultado salvo com sucesso em {checklistFolderPath}");
+
+            NovaTriagem();
         }
 
         private void CreatePdf(string filePath)
