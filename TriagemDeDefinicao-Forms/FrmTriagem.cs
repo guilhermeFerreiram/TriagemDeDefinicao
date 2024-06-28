@@ -106,6 +106,11 @@ namespace TriagemDeDefinicao_Forms
 
             if (!PreenchimentoCorreto()) return;
 
+            foreach (DataGridViewRow row in TabelaDataGridView.Rows )
+            {
+                row.Cells["ResultadoColumn"].ReadOnly = true;
+            }
+
             NovaMoto.LimparDados();
             NovaMoto.DefinirPlaca(PlacaInputTextBox.Text);
             AdicionarItens();
@@ -158,13 +163,8 @@ namespace TriagemDeDefinicao_Forms
 
         private void ExibirBotoesPosResultado()
         {
-            NovaTriagemButton.Visible = true;
+            EditarButton.Visible = true;
             SalvarButton.Visible = true;
-        }
-
-        private void NovaTriagemButton_Click(object sender, EventArgs e)
-        {
-            NovaTriagem();
         }
 
         private void NovaTriagem()
@@ -182,7 +182,7 @@ namespace TriagemDeDefinicao_Forms
 
         private void OcultarResultado()
         {
-            NovaTriagemButton.Visible = false;
+            EditarButton.Visible = false;
             SalvarButton.Visible = false;
             PlacaTriadaTextBox.Visible = false;
             ComplexidadeTextBox.Visible = false;
@@ -287,7 +287,7 @@ namespace TriagemDeDefinicao_Forms
                     foreach (DataGridViewRow row in TabelaDataGridView.Rows)
                     {
                         string nomeItem = row.Cells["NomeColumn"].Value.ToString().Trim();
-                        string resultado =  row.Cells["ResultadoColumn"].Value.ToString().ToUpper().Trim();
+                        string resultado = row.Cells["ResultadoColumn"].Value.ToString().ToUpper().Trim();
 
                         AddTableRow(table, nomeItem, resultado, cellStyle);
                     }
@@ -314,6 +314,17 @@ namespace TriagemDeDefinicao_Forms
             }
 
             table.AddCell(resultCell);
+        }
+
+        private void EditarButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in TabelaDataGridView.Rows)
+            {
+                row.Cells["ResultadoColumn"].ReadOnly = false;
+            }
+
+            NovaMoto.LimparDados();
+            OcultarResultado();
         }
     }
 }

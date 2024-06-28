@@ -42,8 +42,8 @@ namespace TriagemDeDefinicao_Forms
             PlacaTriadaTextBox = new TextBox();
             ComplexidadeTextBox = new TextBox();
             TempoExecucaoTextBox = new TextBox();
-            NovaTriagemButton = new Button();
             SalvarButton = new Button();
+            EditarButton = new Button();
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -152,20 +152,9 @@ namespace TriagemDeDefinicao_Forms
             TempoExecucaoTextBox.TabIndex = 8;
             TempoExecucaoTextBox.Visible = false;
             // 
-            // NovaTriagemButton
-            // 
-            NovaTriagemButton.Location = new Point(223, 753);
-            NovaTriagemButton.Name = "NovaTriagemButton";
-            NovaTriagemButton.Size = new Size(139, 34);
-            NovaTriagemButton.TabIndex = 9;
-            NovaTriagemButton.Text = "Nova triagem";
-            NovaTriagemButton.UseVisualStyleBackColor = true;
-            NovaTriagemButton.Visible = false;
-            NovaTriagemButton.Click += NovaTriagemButton_Click;
-            // 
             // SalvarButton
             // 
-            SalvarButton.Location = new Point(393, 753);
+            SalvarButton.Location = new Point(402, 753);
             SalvarButton.Name = "SalvarButton";
             SalvarButton.Size = new Size(112, 34);
             SalvarButton.TabIndex = 10;
@@ -174,13 +163,24 @@ namespace TriagemDeDefinicao_Forms
             SalvarButton.Visible = false;
             SalvarButton.Click += SalvarButton_Click;
             // 
+            // EditarButton
+            // 
+            EditarButton.Location = new Point(213, 753);
+            EditarButton.Name = "EditarButton";
+            EditarButton.Size = new Size(174, 34);
+            EditarButton.TabIndex = 11;
+            EditarButton.Text = "Editar Seleção";
+            EditarButton.UseVisualStyleBackColor = true;
+            EditarButton.Visible = false;
+            EditarButton.Click += EditarButton_Click;
+            // 
             // FrmTriagem
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1702, 1029);
+            Controls.Add(EditarButton);
             Controls.Add(SalvarButton);
-            Controls.Add(NovaTriagemButton);
             Controls.Add(TempoExecucaoTextBox);
             Controls.Add(ComplexidadeTextBox);
             Controls.Add(PlacaTriadaTextBox);
@@ -210,8 +210,8 @@ namespace TriagemDeDefinicao_Forms
         private TextBox PlacaTriadaTextBox;
         private TextBox ComplexidadeTextBox;
         private TextBox TempoExecucaoTextBox;
-        private Button NovaTriagemButton;
         private DataGridViewTextBoxColumn ResultadoColumn;
         private Button SalvarButton;
+        private Button EditarButton;
     }
 }
