@@ -7,6 +7,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using System.IO;
 using TriagemDeDefinicao_Forms.Entities;
+using System.Globalization;
 
 namespace TriagemDeDefinicao_Forms
 {
@@ -61,6 +62,8 @@ namespace TriagemDeDefinicao_Forms
 
             ResultadoButton.Visible = true;
             IniciarButton.Visible = false;
+
+            InicioTriagem = DateTime.Now;
         }
 
         private bool PlacaInputEstaVazio()
@@ -98,6 +101,7 @@ namespace TriagemDeDefinicao_Forms
         private void ResultadoButton_Click(object sender, EventArgs e)
         {
             Resultado();
+            ResultadoButton.Visible = false;
         }
 
         private void Resultado()
@@ -117,6 +121,8 @@ namespace TriagemDeDefinicao_Forms
 
             NovaMoto.CalcularTempoDeExecucao();
             NovaMoto.DefinirSituacao();
+
+            FinalTriagem = DateTime.Now;
 
             ExibirResultado();
             ExibirBotoesPosResultado();
@@ -154,11 +160,14 @@ namespace TriagemDeDefinicao_Forms
                     break;
             }
 
-            TempoExecucaoTextBox.Text = NovaMoto.ExibirTempoEstimado();
+            TempoEstimadoTextBox.Text = NovaMoto.ExibirTempoEstimado();
+
+            TempoTriagemTextBox.Text = ExibirTempoDeTriagem(TempoDeTriagem(InicioTriagem, FinalTriagem));
 
             PlacaTriadaTextBox.Visible = true;
             ComplexidadeTextBox.Visible = true;
-            TempoExecucaoTextBox.Visible = true;
+            TempoEstimadoTextBox.Visible = true;
+            TempoTriagemTextBox.Visible = true;
         }
 
         private void ExibirBotoesPosResultado()
@@ -186,7 +195,8 @@ namespace TriagemDeDefinicao_Forms
             SalvarButton.Visible = false;
             PlacaTriadaTextBox.Visible = false;
             ComplexidadeTextBox.Visible = false;
-            TempoExecucaoTextBox.Visible = false;
+            TempoEstimadoTextBox.Visible = false;
+            TempoTriagemTextBox.Visible = false;
         }
 
         private void TabelaDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -257,6 +267,8 @@ namespace TriagemDeDefinicao_Forms
                     document.Add(new Paragraph($"CHECKLIST - PLACA: {NovaMoto.Placa} - {DateTime.Now.ToString("yyyy-MM-dd")}"));
                     document.Add(new Paragraph($"COMPLEXIDADE: {NovaMoto.Situacao.ToString().ToUpper()}"));
                     document.Add(new Paragraph($"TEMPO ESTIMADO: {NovaMoto.ExibirTempoEstimado()}"));
+                    document.Add(new Paragraph($"TEMPO DE TRIAGEM: {ExibirTempoDeTriagem(TempoDeTriagem(InicioTriagem, FinalTriagem))}"));
+
 
                     // Cria uma tabela com 2 colunas
                     Table table = new Table(2);
@@ -325,6 +337,25 @@ namespace TriagemDeDefinicao_Forms
 
             NovaMoto.LimparDados();
             OcultarResultado();
+
+            ResultadoButton.Visible = true;
+        }
+
+        private TimeSpan TempoDeTriagem(DateTime inicio, DateTime final)
+        {
+            return final.Subtract(inicio);
+        }
+
+        private string ExibirTempoDeTriagem(TimeSpan tempoDeTriagem)
+        {
+            if (tempoDeTriagem.Hours > 0)
+            {
+                return $"{tempoDeTriagem.Hours.ToString()}H{tempoDeTriagem.Minutes.ToString()}m{tempoDeTriagem.Seconds.ToString()}s";
+            }
+            else
+            {
+                return $"{tempoDeTriagem.Minutes.ToString()}m{tempoDeTriagem.Seconds.ToString()}s";
+            }
         }
     }
 }

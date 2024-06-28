@@ -41,9 +41,10 @@ namespace TriagemDeDefinicao_Forms
             NovaMoto = new Moto();
             PlacaTriadaTextBox = new TextBox();
             ComplexidadeTextBox = new TextBox();
-            TempoExecucaoTextBox = new TextBox();
+            TempoEstimadoTextBox = new TextBox();
             SalvarButton = new Button();
             EditarButton = new Button();
+            TempoTriagemTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -143,14 +144,14 @@ namespace TriagemDeDefinicao_Forms
             ComplexidadeTextBox.TabIndex = 7;
             ComplexidadeTextBox.Visible = false;
             // 
-            // TempoExecucaoTextBox
+            // TempoEstimadoTextBox
             // 
-            TempoExecucaoTextBox.Location = new Point(1460, 753);
-            TempoExecucaoTextBox.Name = "TempoExecucaoTextBox";
-            TempoExecucaoTextBox.ReadOnly = true;
-            TempoExecucaoTextBox.Size = new Size(150, 31);
-            TempoExecucaoTextBox.TabIndex = 8;
-            TempoExecucaoTextBox.Visible = false;
+            TempoEstimadoTextBox.Location = new Point(1460, 753);
+            TempoEstimadoTextBox.Name = "TempoEstimadoTextBox";
+            TempoEstimadoTextBox.ReadOnly = true;
+            TempoEstimadoTextBox.Size = new Size(150, 31);
+            TempoEstimadoTextBox.TabIndex = 8;
+            TempoEstimadoTextBox.Visible = false;
             // 
             // SalvarButton
             // 
@@ -174,14 +175,24 @@ namespace TriagemDeDefinicao_Forms
             EditarButton.Visible = false;
             EditarButton.Click += EditarButton_Click;
             // 
+            // TempoTriagemTextBox
+            // 
+            TempoTriagemTextBox.Location = new Point(1460, 811);
+            TempoTriagemTextBox.Name = "TempoTriagemTextBox";
+            TempoTriagemTextBox.ReadOnly = true;
+            TempoTriagemTextBox.Size = new Size(150, 31);
+            TempoTriagemTextBox.TabIndex = 12;
+            TempoTriagemTextBox.Visible = false;
+            // 
             // FrmTriagem
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1702, 1029);
+            Controls.Add(TempoTriagemTextBox);
             Controls.Add(EditarButton);
             Controls.Add(SalvarButton);
-            Controls.Add(TempoExecucaoTextBox);
+            Controls.Add(TempoEstimadoTextBox);
             Controls.Add(ComplexidadeTextBox);
             Controls.Add(PlacaTriadaTextBox);
             Controls.Add(ResultadoButton);
@@ -209,9 +220,12 @@ namespace TriagemDeDefinicao_Forms
         private Moto NovaMoto;
         private TextBox PlacaTriadaTextBox;
         private TextBox ComplexidadeTextBox;
-        private TextBox TempoExecucaoTextBox;
+        private TextBox TempoEstimadoTextBox;
         private DataGridViewTextBoxColumn ResultadoColumn;
         private Button SalvarButton;
         private Button EditarButton;
+        private DateTime InicioTriagem;
+        private DateTime FinalTriagem;
+        private TextBox TempoTriagemTextBox;
     }
 }
