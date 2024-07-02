@@ -38,15 +38,19 @@ namespace TriagemDeDefinicao_Forms
             PlacaTextBox = new TextBox();
             IniciarButton = new Button();
             ResultadoButton = new Button();
-            PlacaTriadaTextBox = new TextBox();
-            ComplexidadeTextBox = new TextBox();
-            TempoEstimadoTextBox = new TextBox();
+            PlacaTriadaOutputTextBox = new TextBox();
+            ComplexidadeOutputTextBox = new TextBox();
+            TempoEstimadoOutputTextBox = new TextBox();
             SalvarButton = new Button();
             EditarButton = new Button();
-            TempoTriagemTextBox = new TextBox();
+            TempoTriagemOutputTextBox = new TextBox();
             CorPreTriagemTextBox = new TextBox();
             CorPreTriagemComboBox = new ComboBox();
             Triagem = new Triagem();
+            PlacaTriadaTextBox = new TextBox();
+            ComplexidadeTextBox = new TextBox();
+            TempoEstimadoTextBox = new TextBox();
+            TempoTriagemTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -128,32 +132,32 @@ namespace TriagemDeDefinicao_Forms
             ResultadoButton.Visible = false;
             ResultadoButton.Click += ResultadoButton_Click;
             // 
-            // PlacaTriadaTextBox
+            // PlacaTriadaOutputTextBox
             // 
-            PlacaTriadaTextBox.Location = new Point(1097, 753);
-            PlacaTriadaTextBox.Name = "PlacaTriadaTextBox";
-            PlacaTriadaTextBox.ReadOnly = true;
-            PlacaTriadaTextBox.Size = new Size(150, 31);
-            PlacaTriadaTextBox.TabIndex = 5;
-            PlacaTriadaTextBox.Visible = false;
+            PlacaTriadaOutputTextBox.Location = new Point(929, 811);
+            PlacaTriadaOutputTextBox.Name = "PlacaTriadaOutputTextBox";
+            PlacaTriadaOutputTextBox.ReadOnly = true;
+            PlacaTriadaOutputTextBox.Size = new Size(150, 31);
+            PlacaTriadaOutputTextBox.TabIndex = 5;
+            PlacaTriadaOutputTextBox.Visible = false;
             // 
-            // ComplexidadeTextBox
+            // ComplexidadeOutputTextBox
             // 
-            ComplexidadeTextBox.Location = new Point(1282, 753);
-            ComplexidadeTextBox.Name = "ComplexidadeTextBox";
-            ComplexidadeTextBox.ReadOnly = true;
-            ComplexidadeTextBox.Size = new Size(150, 31);
-            ComplexidadeTextBox.TabIndex = 7;
-            ComplexidadeTextBox.Visible = false;
+            ComplexidadeOutputTextBox.Location = new Point(1114, 811);
+            ComplexidadeOutputTextBox.Name = "ComplexidadeOutputTextBox";
+            ComplexidadeOutputTextBox.ReadOnly = true;
+            ComplexidadeOutputTextBox.Size = new Size(150, 31);
+            ComplexidadeOutputTextBox.TabIndex = 7;
+            ComplexidadeOutputTextBox.Visible = false;
             // 
-            // TempoEstimadoTextBox
+            // TempoEstimadoOutputTextBox
             // 
-            TempoEstimadoTextBox.Location = new Point(1460, 753);
-            TempoEstimadoTextBox.Name = "TempoEstimadoTextBox";
-            TempoEstimadoTextBox.ReadOnly = true;
-            TempoEstimadoTextBox.Size = new Size(150, 31);
-            TempoEstimadoTextBox.TabIndex = 8;
-            TempoEstimadoTextBox.Visible = false;
+            TempoEstimadoOutputTextBox.Location = new Point(1292, 811);
+            TempoEstimadoOutputTextBox.Name = "TempoEstimadoOutputTextBox";
+            TempoEstimadoOutputTextBox.ReadOnly = true;
+            TempoEstimadoOutputTextBox.Size = new Size(150, 31);
+            TempoEstimadoOutputTextBox.TabIndex = 8;
+            TempoEstimadoOutputTextBox.Visible = false;
             // 
             // SalvarButton
             // 
@@ -177,14 +181,14 @@ namespace TriagemDeDefinicao_Forms
             EditarButton.Visible = false;
             EditarButton.Click += EditarButton_Click;
             // 
-            // TempoTriagemTextBox
+            // TempoTriagemOutputTextBox
             // 
-            TempoTriagemTextBox.Location = new Point(1460, 811);
-            TempoTriagemTextBox.Name = "TempoTriagemTextBox";
-            TempoTriagemTextBox.ReadOnly = true;
-            TempoTriagemTextBox.Size = new Size(150, 31);
-            TempoTriagemTextBox.TabIndex = 12;
-            TempoTriagemTextBox.Visible = false;
+            TempoTriagemOutputTextBox.Location = new Point(1488, 811);
+            TempoTriagemOutputTextBox.Name = "TempoTriagemOutputTextBox";
+            TempoTriagemOutputTextBox.ReadOnly = true;
+            TempoTriagemOutputTextBox.Size = new Size(150, 31);
+            TempoTriagemOutputTextBox.TabIndex = 12;
+            TempoTriagemOutputTextBox.Visible = false;
             // 
             // CorPreTriagemTextBox
             // 
@@ -198,25 +202,65 @@ namespace TriagemDeDefinicao_Forms
             // CorPreTriagemComboBox
             // 
             CorPreTriagemComboBox.FormattingEnabled = true;
+            CorPreTriagemComboBox.Items.AddRange(new object[] { "Amarelo", "Vermelho", "Roxo" });
             CorPreTriagemComboBox.Location = new Point(646, 80);
             CorPreTriagemComboBox.Name = "CorPreTriagemComboBox";
             CorPreTriagemComboBox.Size = new Size(182, 33);
             CorPreTriagemComboBox.TabIndex = 14;
-            CorPreTriagemComboBox.Items.AddRange(new string[] { "Amarelo", "Vermelho", "Roxo"});
+            // 
+            // PlacaTriadaTextBox
+            // 
+            PlacaTriadaTextBox.Location = new Point(929, 753);
+            PlacaTriadaTextBox.Name = "PlacaTriadaTextBox";
+            PlacaTriadaTextBox.ReadOnly = true;
+            PlacaTriadaTextBox.Size = new Size(150, 31);
+            PlacaTriadaTextBox.TabIndex = 15;
+            PlacaTriadaTextBox.Text = "Placa:";
+            // 
+            // ComplexidadeTextBox
+            // 
+            ComplexidadeTextBox.Location = new Point(1114, 753);
+            ComplexidadeTextBox.Name = "ComplexidadeTextBox";
+            ComplexidadeTextBox.ReadOnly = true;
+            ComplexidadeTextBox.Size = new Size(150, 31);
+            ComplexidadeTextBox.TabIndex = 17;
+            ComplexidadeTextBox.Text = "Complexidade:";
+            // 
+            // TempoEstimadoTextBox
+            // 
+            TempoEstimadoTextBox.Location = new Point(1292, 753);
+            TempoEstimadoTextBox.Name = "TempoEstimadoTextBox";
+            TempoEstimadoTextBox.ReadOnly = true;
+            TempoEstimadoTextBox.Size = new Size(150, 31);
+            TempoEstimadoTextBox.TabIndex = 18;
+            TempoEstimadoTextBox.Text = "Tempo Estimado:";
+            // 
+            // TempoTriagemTextBox
+            // 
+            TempoTriagemTextBox.Location = new Point(1460, 753);
+            TempoTriagemTextBox.Name = "TempoTriagemTextBox";
+            TempoTriagemTextBox.ReadOnly = true;
+            TempoTriagemTextBox.Size = new Size(178, 31);
+            TempoTriagemTextBox.TabIndex = 19;
+            TempoTriagemTextBox.Text = "Tempo de Triagem:";
             // 
             // FrmTriagem
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1702, 1029);
-            Controls.Add(CorPreTriagemComboBox);
-            Controls.Add(CorPreTriagemTextBox);
             Controls.Add(TempoTriagemTextBox);
-            Controls.Add(EditarButton);
-            Controls.Add(SalvarButton);
             Controls.Add(TempoEstimadoTextBox);
             Controls.Add(ComplexidadeTextBox);
             Controls.Add(PlacaTriadaTextBox);
+            Controls.Add(CorPreTriagemComboBox);
+            Controls.Add(CorPreTriagemTextBox);
+            Controls.Add(TempoTriagemOutputTextBox);
+            Controls.Add(EditarButton);
+            Controls.Add(SalvarButton);
+            Controls.Add(TempoEstimadoOutputTextBox);
+            Controls.Add(ComplexidadeOutputTextBox);
+            Controls.Add(PlacaTriadaOutputTextBox);
             Controls.Add(ResultadoButton);
             Controls.Add(IniciarButton);
             Controls.Add(PlacaTextBox);
@@ -239,15 +283,19 @@ namespace TriagemDeDefinicao_Forms
         private TextBox PlacaTextBox;
         private Button IniciarButton;
         private Button ResultadoButton;
-        private TextBox PlacaTriadaTextBox;
-        private TextBox ComplexidadeTextBox;
-        private TextBox TempoEstimadoTextBox;
+        private TextBox PlacaTriadaOutputTextBox;
+        private TextBox ComplexidadeOutputTextBox;
+        private TextBox TempoEstimadoOutputTextBox;
         private DataGridViewTextBoxColumn ResultadoColumn;
         private Button SalvarButton;
         private Button EditarButton;
-        private TextBox TempoTriagemTextBox;
+        private TextBox TempoTriagemOutputTextBox;
         private TextBox CorPreTriagemTextBox;
         private ComboBox CorPreTriagemComboBox;
         private Triagem Triagem;
+        private TextBox PlacaTriadaTextBox;
+        private TextBox ComplexidadeTextBox;
+        private TextBox TempoEstimadoTextBox;
+        private TextBox TempoTriagemTextBox;
     }
 }

@@ -125,29 +125,29 @@ namespace TriagemDeDefinicao_Forms
 
         private void ExibirResultado()
         {
-            PlacaTriadaTextBox.Text = Triagem.Moto.Placa;
+            PlacaTriadaOutputTextBox.Text = Triagem.Moto.Placa;
 
             switch (Triagem.Moto.Situacao)
             {
                 case Enums.Cor.Verde:
-                    ComplexidadeTextBox.BackColor = System.Drawing.Color.Green;
+                    ComplexidadeOutputTextBox.BackColor = System.Drawing.Color.Green;
                     break;
                 case Enums.Cor.Amarelo:
-                    ComplexidadeTextBox.BackColor = System.Drawing.Color.Yellow;
+                    ComplexidadeOutputTextBox.BackColor = System.Drawing.Color.Yellow;
                     break;
                 case Enums.Cor.Vermelho:
-                    ComplexidadeTextBox.BackColor = System.Drawing.Color.Red;
+                    ComplexidadeOutputTextBox.BackColor = System.Drawing.Color.Red;
                     break;
             }
 
-            TempoEstimadoTextBox.Text = Triagem.Moto.ExibirTempoEstimado();
+            TempoEstimadoOutputTextBox.Text = Triagem.Moto.ExibirTempoEstimado();
 
-            TempoTriagemTextBox.Text = ExibirTempoDeTriagem();
+            TempoTriagemOutputTextBox.Text = ExibirTempoDeTriagem();
 
-            PlacaTriadaTextBox.Visible = true;
-            ComplexidadeTextBox.Visible = true;
-            TempoEstimadoTextBox.Visible = true;
-            TempoTriagemTextBox.Visible = true;
+            PlacaTriadaOutputTextBox.Visible = true;
+            ComplexidadeOutputTextBox.Visible = true;
+            TempoEstimadoOutputTextBox.Visible = true;
+            TempoTriagemOutputTextBox.Visible = true;
         }
 
         private void ExibirBotoesPosResultado()
@@ -166,17 +166,17 @@ namespace TriagemDeDefinicao_Forms
 
             IniciarButton.Visible = true;
             PlacaInputTextBox.Text = null;
-            PlacaInputTextBox.ReadOnly = false;
+            CorPreTriagemComboBox.SelectedIndex = -1;
         }
 
         private void OcultarResultado()
         {
             EditarButton.Visible = false;
             SalvarButton.Visible = false;
-            PlacaTriadaTextBox.Visible = false;
-            ComplexidadeTextBox.Visible = false;
-            TempoEstimadoTextBox.Visible = false;
-            TempoTriagemTextBox.Visible = false;
+            PlacaTriadaOutputTextBox.Visible = false;
+            ComplexidadeOutputTextBox.Visible = false;
+            TempoEstimadoOutputTextBox.Visible = false;
+            TempoTriagemOutputTextBox.Visible = false;
         }
 
         private void TabelaDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
