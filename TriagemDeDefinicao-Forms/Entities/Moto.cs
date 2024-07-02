@@ -67,14 +67,14 @@ namespace TriagemDeDefinicao_Forms.Entities
         {
             switch (cor)
             {
+                case "Verde":
+                    CorPreTriagem = Cor.Verde;
+                    break;
                 case "Amarelo":
                     CorPreTriagem = Cor.Amarelo;
                     break;
                 case "Vermelho":
                     CorPreTriagem = Cor.Vermelho;
-                    break;
-                case "Roxo":
-                    CorPreTriagem = Cor.Roxo;
                     break;
             }
         }

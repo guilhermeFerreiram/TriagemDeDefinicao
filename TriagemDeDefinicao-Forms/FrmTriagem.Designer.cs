@@ -202,7 +202,7 @@ namespace TriagemDeDefinicao_Forms
             // CorPreTriagemComboBox
             // 
             CorPreTriagemComboBox.FormattingEnabled = true;
-            CorPreTriagemComboBox.Items.AddRange(new object[] { "Amarelo", "Vermelho", "Roxo" });
+            CorPreTriagemComboBox.Items.AddRange(new object[] { "Verde", "Amarelo", "Vermelho" });
             CorPreTriagemComboBox.Location = new Point(646, 80);
             CorPreTriagemComboBox.Name = "CorPreTriagemComboBox";
             CorPreTriagemComboBox.Size = new Size(182, 33);

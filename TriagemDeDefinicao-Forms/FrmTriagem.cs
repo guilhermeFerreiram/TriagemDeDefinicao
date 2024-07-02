@@ -1,13 +1,9 @@
 using iText.Kernel.Colors;
-using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
-using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using System.IO;
 using TriagemDeDefinicao_Forms.Entities;
-using System.Globalization;
 
 namespace TriagemDeDefinicao_Forms
 {
