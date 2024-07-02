@@ -18,46 +18,14 @@ namespace TriagemDeDefinicao_Forms
             InitializeComponent();
         }
 
-        private List<Item> ListaDeItens()
-        {
-            List<Item> itens = new List<Item>();
-            itens.Add(new Item("Óleo do Motor", "Verifique o nível rosqueando na Sport e encostando na Pop. Primeira troca com 1.000km e a cada 5.000km. Complete o nível se necessário.", new TimeSpan(0, 3, 0)));
-            itens.Add(new Item("Compressão do Motor", "Verifique acionando o pedal de partida.", new TimeSpan(0, 25, 0)));
-            //itens.Add(new Item("Rotação de Marcha lenta", "Sport: 1.500 ± 150 rpm   Pop: 1400 ± 100 rpm.", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Sistema de Escapamento", "Com a motocicleta ligada, verifique vazamento de gás.", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Elétrica: Luzes e interruptores", "Verifique funcionamneto: farol, farol alto, setas, lanterna, luz de freio, iluminação de placa, buzina.", new TimeSpan(0, 6, 0)));
-            //itens.Add(new Item("Elemento de Filtro de Ar", "Verifique o quanto está sujo e a vida útil.", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Embreagem", "Verifique: folga livre do manete ( Sport: 8 à 13mm Pop: 10 à 20mm).", new TimeSpan(0, 8, 0)));
-            //itens.Add(new Item("Freio dianteiro", "Verifique: folga livre do manete ( Sport: 15 à 20mm Pop: 10 à 20mm).", new TimeSpan(0, 6, 0)));
-            //itens.Add(new Item("Freio Traseiro", "Verifique: folga livre do pedal ( Sport: 15 à 20mm Pop: 20 à 30mm).", new TimeSpan(0, 8, 0)));
-            //itens.Add(new Item("Folga do Acelerador", "Verifique: folga livre da manopla do acelerador (Sport: 3 à 6mm Pop: 2 à 6mm).", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Roda Dianteira", "Verifique amassamento, folga do rolamento e outras irregularidades.", new TimeSpan(0, 8, 0)));
-            //itens.Add(new Item("Roda Traseira", "Verifique amassamento, folga do rolamento e outras irregularidades.", new TimeSpan(0, 8, 0)));
-            //itens.Add(new Item("Corrente de Transmissão", "Verificar folga, alongamento e lubrificação.", new TimeSpan(0, 6, 0)));
-            //itens.Add(new Item("Coroa", "Verificar perfil dos dentes.", new TimeSpan(0, 6, 0)));
-            //itens.Add(new Item("Pinhão", "Verificar perfil dos dentes.", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Suspensão Dianteira", "Verificar vazamento, parafusos soltos e alinhamento de montagem.", new TimeSpan(0, 10, 0)));
-            //itens.Add(new Item("Amortecedor traseiro", "Verificar vazamento, parafusos soltos e bucha gasta.", new TimeSpan(0, 6, 0)));
-            //itens.Add(new Item("Pneus", "Verifique: profundidade da banda de rodagem, pressão.", new TimeSpan(0, 20, 0)));
-            //itens.Add(new Item("Vazamento", "Verificar vazamento no motor.", new TimeSpan(0, 10, 0)));
-            //itens.Add(new Item("Sistema de Ignição", "Verificar vela, cabo de vela e cachimbo.", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Parafusos", "Verifique: Parafusos soltos ou sem parafusos (inspeção visual).", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Carenagens", "verificar carenagens soltas.", new TimeSpan(0, 6, 0)));
-            //itens.Add(new Item("Caixa de Direção", "Verificar folga e calos de direção.", new TimeSpan(0, 25, 0)));
-            //itens.Add(new Item("Passagem dos Cabos", "verifique passagem dos cabos: Velocímetro, embreagem e freio.", new TimeSpan(0, 3, 0)));
-            //itens.Add(new Item("Sintoma crônico que depende de análise", "Moto falhando; Moto morrendo; Embregem patinando; Ruído no motor; Luz da injeção acesa; Chassi desalinhado;", new TimeSpan(1, 0, 0)));
-
-
-            return itens;
-        }
-
         private void IniciarButton_Click(object sender, EventArgs e)
         {
             if (PlacaInputEstaVazio()) return;
+            if (CorPreTriagemEstaVazio()) return;
 
             TabelaDataGridView.Rows.Clear();
 
-            foreach (var item in ListaDeItens())
+            foreach (var item in Triagem.Itens)
             {
                 TabelaDataGridView.Rows.Add(item.Nome, item.Verificacao);
             }
@@ -65,7 +33,7 @@ namespace TriagemDeDefinicao_Forms
             ResultadoButton.Visible = true;
             IniciarButton.Visible = false;
 
-            InicioTriagem = DateTime.Now;
+            Triagem.DefinirInicioTriagem(DateTime.Now);
         }
 
         private bool PlacaInputEstaVazio()
@@ -75,6 +43,17 @@ namespace TriagemDeDefinicao_Forms
                 MessageBox.Show("O campo placa não pode estar vazio!");
                 return true;
             }
+            return false;
+        }
+
+        private bool CorPreTriagemEstaVazio()
+        {
+            if (CorPreTriagemComboBox.Text == "" || CorPreTriagemComboBox.Text == null)
+            {
+                MessageBox.Show("O campo Cor Anterior à Triagem não pode estar vazio!");
+                return true;
+            }
+
             return false;
         }
 
@@ -102,35 +81,34 @@ namespace TriagemDeDefinicao_Forms
 
         private void ResultadoButton_Click(object sender, EventArgs e)
         {
-            Resultado();
-            ResultadoButton.Visible = false;
-        }
-
-        private void Resultado()
-        {
             if (PlacaInputEstaVazio()) return;
-
+            if (CorPreTriagemEstaVazio()) return;
             if (!PreenchimentoCorreto()) return;
 
-            foreach (DataGridViewRow row in TabelaDataGridView.Rows )
+            foreach (DataGridViewRow row in TabelaDataGridView.Rows)
             {
                 row.Cells["ResultadoColumn"].ReadOnly = true;
             }
 
-            NovaMoto.LimparDados();
-            NovaMoto.DefinirPlaca(PlacaInputTextBox.Text);
-            AdicionarItens();
+            Triagem.Moto.LimparDados();
 
-            NovaMoto.CalcularTempoDeExecucao();
-            NovaMoto.DefinirSituacao();
+            Triagem.Moto.DefinirPlaca(PlacaInputTextBox.Text);
+            Triagem.Moto.DefinirCorPreTriagem(CorPreTriagemComboBox.Text);
 
-            FinalTriagem = DateTime.Now;
+            AdicionarItens(Triagem.Moto);
+
+            Triagem.Resultado();
+
+            Triagem.DefinirFinalTriagem(DateTime.Now);
+            Triagem.CalcularTempoTriagem();
 
             ExibirResultado();
             ExibirBotoesPosResultado();
+
+            ResultadoButton.Visible = false;
         }
 
-        private void AdicionarItens()
+        private void AdicionarItens(Moto moto)
         {
             foreach (DataGridViewRow row in TabelaDataGridView.Rows)
             {
@@ -139,17 +117,17 @@ namespace TriagemDeDefinicao_Forms
                 if (row.Cells["ResultadoColumn"].Value.ToString().Trim().ToUpper() == "NG")
                 {
                     Item item = new Item();
-                    item = ListaDeItens()[row.Index];
-                    NovaMoto.AdicionarItem(item);
+                    item = Triagem.Itens[row.Index];
+                    moto.AdicionarItem(item);
                 }
             }
         }
 
         private void ExibirResultado()
         {
-            PlacaTriadaTextBox.Text = NovaMoto.Placa;
+            PlacaTriadaTextBox.Text = Triagem.Moto.Placa;
 
-            switch (NovaMoto.Situacao)
+            switch (Triagem.Moto.Situacao)
             {
                 case Enums.Cor.Verde:
                     ComplexidadeTextBox.BackColor = System.Drawing.Color.Green;
@@ -162,9 +140,9 @@ namespace TriagemDeDefinicao_Forms
                     break;
             }
 
-            TempoEstimadoTextBox.Text = NovaMoto.ExibirTempoEstimado();
+            TempoEstimadoTextBox.Text = Triagem.Moto.ExibirTempoEstimado();
 
-            TempoTriagemTextBox.Text = ExibirTempoDeTriagem(TempoDeTriagem(InicioTriagem, FinalTriagem));
+            TempoTriagemTextBox.Text = ExibirTempoDeTriagem();
 
             PlacaTriadaTextBox.Visible = true;
             ComplexidadeTextBox.Visible = true;
@@ -180,7 +158,7 @@ namespace TriagemDeDefinicao_Forms
 
         private void NovaTriagem()
         {
-            NovaMoto.LimparDados();
+            Triagem.Moto.LimparDados();
             TabelaDataGridView.Rows.Clear();
 
             OcultarResultado();
@@ -221,7 +199,7 @@ namespace TriagemDeDefinicao_Forms
                 if (e.Value != null && e.Value.ToString().Trim().ToUpper() == "NG")
                 {
                     Item item = new Item();
-                    item = ListaDeItens()[e.RowIndex];
+                    item = Triagem.Itens[e.RowIndex];
                     if (item.Situacao == Enums.Cor.Amarelo)
                     {
                         e.CellStyle.BackColor = System.Drawing.Color.Yellow;
@@ -249,7 +227,7 @@ namespace TriagemDeDefinicao_Forms
 
             Directory.CreateDirectory(checklistFolderPath);
 
-            string filePath = System.IO.Path.Combine(checklistFolderPath, $"CheckList_{NovaMoto.Placa}_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf");
+            string filePath = System.IO.Path.Combine(checklistFolderPath, $"CheckList_{Triagem.Moto.Placa}_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf");
 
             CreatePdf(filePath);
 
@@ -266,28 +244,24 @@ namespace TriagemDeDefinicao_Forms
                 {
                     Document document = new Document(pdf);
 
-                    document.Add(new Paragraph($"CHECKLIST - PLACA: {NovaMoto.Placa} - {DateTime.Now.ToString("yyyy-MM-dd")}"));
-                    document.Add(new Paragraph($"COMPLEXIDADE: {NovaMoto.Situacao.ToString().ToUpper()}"));
-                    document.Add(new Paragraph($"TEMPO ESTIMADO: {NovaMoto.ExibirTempoEstimado()}"));
-                    document.Add(new Paragraph($"TEMPO DE TRIAGEM: {ExibirTempoDeTriagem(TempoDeTriagem(InicioTriagem, FinalTriagem))}"));
+                    document.Add(new Paragraph($"CHECKLIST - PLACA: {Triagem.Moto.Placa} - {DateTime.Now.ToString("yyyy-MM-dd")}"));
+                    document.Add(new Paragraph($"COR ANTERIOR À TRIAGEM: {Triagem.Moto.CorPreTriagem.ToString().ToUpper()}"));
+                    document.Add(new Paragraph($"COMPLEXIDADE: {Triagem.Moto.Situacao.ToString().ToUpper()}"));
+                    document.Add(new Paragraph($"TEMPO ESTIMADO: {Triagem.Moto.ExibirTempoEstimado()}"));
+                    document.Add(new Paragraph($"TEMPO DE TRIAGEM: {ExibirTempoDeTriagem()}"));
 
-
-                    // Cria uma tabela com 2 colunas
                     Table table = new Table(2);
                     table.SetWidth(UnitValue.CreatePercentValue(100));
 
-                    // Define um estilo para o cabeçalho da tabela
                     Style headerStyle = new Style()
                         .SetBackgroundColor(ColorConstants.LIGHT_GRAY)
                         .SetFontColor(ColorConstants.BLACK)
                         .SetTextAlignment(TextAlignment.CENTER)
                         .SetBold();
 
-                    // Define um estilo para o conteúdo da tabela
                     Style cellStyle = new Style()
                         .SetTextAlignment(TextAlignment.CENTER);
 
-                    // Adiciona cabeçalhos à tabela com o estilo
                     Cell headerCell;
 
                     headerCell = new Cell().Add(new Paragraph("Item"));
@@ -337,26 +311,21 @@ namespace TriagemDeDefinicao_Forms
                 row.Cells["ResultadoColumn"].ReadOnly = false;
             }
 
-            NovaMoto.LimparDados();
+            Triagem.Moto.LimparDados();
             OcultarResultado();
 
             ResultadoButton.Visible = true;
         }
 
-        private TimeSpan TempoDeTriagem(DateTime inicio, DateTime final)
+        private string ExibirTempoDeTriagem()
         {
-            return final.Subtract(inicio);
-        }
-
-        private string ExibirTempoDeTriagem(TimeSpan tempoDeTriagem)
-        {
-            if (tempoDeTriagem.Hours > 0)
+            if (Triagem.TempoTriagem.Hours > 0)
             {
-                return $"{tempoDeTriagem.Hours.ToString()}H{tempoDeTriagem.Minutes.ToString()}m{tempoDeTriagem.Seconds.ToString()}s";
+                return $"{Triagem.TempoTriagem.Hours.ToString()}H{Triagem.TempoTriagem.Minutes.ToString()}m{Triagem.TempoTriagem.Seconds.ToString()}s";
             }
             else
             {
-                return $"{tempoDeTriagem.Minutes.ToString()}m{tempoDeTriagem.Seconds.ToString()}s";
+                return $"{Triagem.TempoTriagem.Minutes.ToString()}m{Triagem.TempoTriagem.Seconds.ToString()}s";
             }
         }
     }

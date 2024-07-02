@@ -8,6 +8,7 @@ namespace TriagemDeDefinicao_Forms.Entities
         public List<Item> Itens { get; private set; }
         public TimeSpan TempoEstimado { get; private set; }
         public Cor Situacao { get; private set; }
+        public Cor CorPreTriagem { get; private set; }
 
         public Moto()
         {
@@ -60,6 +61,22 @@ namespace TriagemDeDefinicao_Forms.Entities
         public string ExibirTempoEstimado()
         {
             return $"{TempoEstimado.Hours.ToString()}h{TempoEstimado.Minutes.ToString()}m";
+        }
+
+        public void DefinirCorPreTriagem(string cor)
+        {
+            switch (cor)
+            {
+                case "Amarelo":
+                    CorPreTriagem = Cor.Amarelo;
+                    break;
+                case "Vermelho":
+                    CorPreTriagem = Cor.Vermelho;
+                    break;
+                case "Roxo":
+                    CorPreTriagem = Cor.Roxo;
+                    break;
+            }
         }
     }
 }

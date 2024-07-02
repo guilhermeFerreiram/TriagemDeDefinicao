@@ -38,13 +38,15 @@ namespace TriagemDeDefinicao_Forms
             PlacaTextBox = new TextBox();
             IniciarButton = new Button();
             ResultadoButton = new Button();
-            NovaMoto = new Moto();
             PlacaTriadaTextBox = new TextBox();
             ComplexidadeTextBox = new TextBox();
             TempoEstimadoTextBox = new TextBox();
             SalvarButton = new Button();
             EditarButton = new Button();
             TempoTriagemTextBox = new TextBox();
+            CorPreTriagemTextBox = new TextBox();
+            CorPreTriagemComboBox = new ComboBox();
+            Triagem = new Triagem();
             ((System.ComponentModel.ISupportInitialize)TabelaDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -184,11 +186,31 @@ namespace TriagemDeDefinicao_Forms
             TempoTriagemTextBox.TabIndex = 12;
             TempoTriagemTextBox.Visible = false;
             // 
+            // CorPreTriagemTextBox
+            // 
+            CorPreTriagemTextBox.Location = new Point(415, 80);
+            CorPreTriagemTextBox.Name = "CorPreTriagemTextBox";
+            CorPreTriagemTextBox.ReadOnly = true;
+            CorPreTriagemTextBox.Size = new Size(212, 31);
+            CorPreTriagemTextBox.TabIndex = 13;
+            CorPreTriagemTextBox.Text = "Cor Anterior à Triagem:";
+            // 
+            // CorPreTriagemComboBox
+            // 
+            CorPreTriagemComboBox.FormattingEnabled = true;
+            CorPreTriagemComboBox.Location = new Point(646, 80);
+            CorPreTriagemComboBox.Name = "CorPreTriagemComboBox";
+            CorPreTriagemComboBox.Size = new Size(182, 33);
+            CorPreTriagemComboBox.TabIndex = 14;
+            CorPreTriagemComboBox.Items.AddRange(new string[] { "Amarelo", "Vermelho", "Roxo"});
+            // 
             // FrmTriagem
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1702, 1029);
+            Controls.Add(CorPreTriagemComboBox);
+            Controls.Add(CorPreTriagemTextBox);
             Controls.Add(TempoTriagemTextBox);
             Controls.Add(EditarButton);
             Controls.Add(SalvarButton);
@@ -217,15 +239,15 @@ namespace TriagemDeDefinicao_Forms
         private TextBox PlacaTextBox;
         private Button IniciarButton;
         private Button ResultadoButton;
-        private Moto NovaMoto;
         private TextBox PlacaTriadaTextBox;
         private TextBox ComplexidadeTextBox;
         private TextBox TempoEstimadoTextBox;
         private DataGridViewTextBoxColumn ResultadoColumn;
         private Button SalvarButton;
         private Button EditarButton;
-        private DateTime InicioTriagem;
-        private DateTime FinalTriagem;
         private TextBox TempoTriagemTextBox;
+        private TextBox CorPreTriagemTextBox;
+        private ComboBox CorPreTriagemComboBox;
+        private Triagem Triagem;
     }
 }

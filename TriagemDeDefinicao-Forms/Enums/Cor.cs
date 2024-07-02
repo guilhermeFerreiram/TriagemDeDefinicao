@@ -4,6 +4,7 @@
     {
         Verde,
         Amarelo,
-        Vermelho
+        Vermelho,
+        Roxo
     }
 }
